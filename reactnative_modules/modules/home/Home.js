@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   Text,
 } from 'react-native';
+import uibase from '../../common/appbase/uibase'
 
 export default class Home extends Component {
   constructor(props) {
@@ -19,7 +20,8 @@ export default class Home extends Component {
     }
   }
   data = [{key: 0,name:'Flexbox布局',navigation:'Flexbox'},
-    {key: 1,name:'React Navigation使用',navigation:'Flexbox'}]
+    {key: 1,name:'React Navigation使用',navigation:'ReactNavi'}]
+
   //在这里定义每个页面的导航属性
   static navigationOptions = {
     title: '常用功能',
@@ -28,6 +30,9 @@ export default class Home extends Component {
   }
 
   componentDidMount() {
+    // uibase.showToast('componentDidMount')
+    // uibase.showProgress(true)
+    console.disableYellowBox = true;
 
   }
   render() {

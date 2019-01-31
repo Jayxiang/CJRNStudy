@@ -13,6 +13,7 @@ import { createBottomTabNavigator,createStackNavigator,createAppContainer } from
 
 import Home from './reactnative_modules/modules/home/Home'
 import Flexbox from './reactnative_modules/modules/home/Flexbox'
+import ReactNavi from './reactnative_modules/modules/home/ReactNavigation'
 import Mine from './reactnative_modules/modules/mine/Mine'
 
 type Props = {};
@@ -32,6 +33,9 @@ const NavHome = createStackNavigator(
       },
       Flexbox: {
         screen:Flexbox,
+      },
+      ReactNavi: {
+        screen:ReactNavi,
       }
     },
     {
@@ -110,6 +114,7 @@ const MyTab = createBottomTabNavigator({
         }
       }
     },
+    //tabbar点击事件
     tabBarOnPress: ({ navigation, defaultHandler }) => {
       const navigationInRoute = navigation.getChildNavigation(navigation.state.routes[0].key);
       // navigationInRoute.isFocused()
@@ -135,6 +140,7 @@ const MyTab = createBottomTabNavigator({
   initialRouteName: 'HomeTab',
   backBehavior: 'none',
 })
+//跳转隐藏tabbar
 NavHome.navigationOptions = ({ navigation }) => {
   let tabBarVisible = true;
   if (navigation.state.index > 0) {
