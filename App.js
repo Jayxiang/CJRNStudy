@@ -14,6 +14,7 @@ import { createBottomTabNavigator,createStackNavigator,createAppContainer } from
 import Home from './reactnative_modules/modules/home/Home'
 import Flexbox from './reactnative_modules/modules/home/Flexbox'
 import ReactNavi from './reactnative_modules/modules/home/ReactNavigation'
+import TopTab from './reactnative_modules/modules/home/TopTabNavigator'
 import Mine from './reactnative_modules/modules/mine/Mine'
 
 type Props = {};
@@ -36,6 +37,9 @@ const NavHome = createStackNavigator(
       },
       ReactNavi: {
         screen:ReactNavi,
+      },
+      TopTab: {
+        screen:TopTab,
       }
     },
     {
@@ -138,6 +142,7 @@ const MyTab = createBottomTabNavigator({
   },
 
   initialRouteName: 'HomeTab',
+  // 后退按钮是否会导致标签切换到初始tab
   backBehavior: 'none',
 })
 //跳转隐藏tabbar
