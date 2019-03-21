@@ -8,8 +8,8 @@
     "iosbuild": "react-native bundle --entry-file index.js --platform ios --dev false --bundle-output ./ios/main.jsbundle"
   },
   "dependencies": {
-    "react": "16.6.3",
-    "react-native": "0.58.0",
+    "react": "16.8.3",
+    "react-native": "0.59.1",
     "react-native-gesture-handler": "^1.0.15",
     "react-navigation": "^3.0.9"
   },
