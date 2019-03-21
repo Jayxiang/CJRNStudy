@@ -15,6 +15,7 @@ import Home from './reactnative_modules/modules/home/Home'
 import Flexbox from './reactnative_modules/modules/home/Flexbox'
 import ReactNavi from './reactnative_modules/modules/home/ReactNavigation'
 import TopTab from './reactnative_modules/modules/home/TopTabNavigator'
+import FlatListUse from './reactnative_modules/modules/home/FlatListUse'
 import Mine from './reactnative_modules/modules/mine/Mine'
 
 type Props = {};
@@ -40,7 +41,10 @@ const NavHome = createStackNavigator(
       },
       TopTab: {
         screen:TopTab,
-      }
+      },
+      FlatListUse:{
+        screen:FlatListUse
+      },
     },
     {
       /* 指定初始化路由*/

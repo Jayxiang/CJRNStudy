@@ -20,7 +20,8 @@ export default class Home extends Component {
     }
   }
   data = [{key: 0,name:'Flexbox布局',navigation:'Flexbox'},
-    {key: 1,name:'React Navigation使用',navigation:'ReactNavi'}]
+    {key: 1,name:'React Navigation使用',navigation:'ReactNavi'},
+    {key: 2,name:'FlatList使用',navigation:'FlatListUse'}]
 
   //在这里定义每个页面的导航属性
   static navigationOptions = {
@@ -32,6 +33,7 @@ export default class Home extends Component {
   componentDidMount() {
     // uibase.showToast('componentDidMount')
     // uibase.showProgress(true)
+    //去掉警告
     console.disableYellowBox = true;
 
   }
