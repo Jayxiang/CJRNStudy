@@ -4,12 +4,15 @@
  *
  * @format
  * @flow
- * @lint-ignore-every XPLATJSCOPYRIGHT1
  */
 
-import React, {Component} from 'react';
-import {StyleSheet,Image} from 'react-native';
-import { createBottomTabNavigator,createStackNavigator,createAppContainer } from 'react-navigation';
+import React, { Component } from "react";
+import { StyleSheet, Image } from "react-native";
+import {
+  createBottomTabNavigator,
+  createStackNavigator,
+  createAppContainer
+} from "react-navigation";
 
 import Home from './reactnative_modules/modules/home/Home'
 import Flexbox from './reactnative_modules/modules/home/Flexbox'
@@ -22,9 +25,7 @@ type Props = {};
 
 export default class App extends Component<Props> {
   render() {
-    return (
-        <AppContainer/>
-    );
+    return <AppContainer />;
   }
 }
 
