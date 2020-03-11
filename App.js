@@ -6,174 +6,144 @@
  * @flow
  */
 
-import React, { Component } from "react";
-import { StyleSheet, Image } from "react-native";
-import {
-  createBottomTabNavigator,
-  createStackNavigator,
-  createAppContainer
-} from "react-navigation";
+import 'react-native-gesture-handler';
+import * as React from 'react';
+import {Image} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import Home from './reactnative_modules/modules/home/Home';
+import Flexbox from './reactnative_modules/modules/home/Flexbox';
+import MyNav from './reactnative_modules/modules/home/ReactNavigation';
+// import TopTab from './reactnative_modules/modules/home/TopTabNavigator';
+import FlatListUse from './reactnative_modules/modules/home/FlatListUse';
+import Mine from './reactnative_modules/modules/mine/Mine';
 
-import Home from './reactnative_modules/modules/home/Home'
-import Flexbox from './reactnative_modules/modules/home/Flexbox'
-import ReactNavi from './reactnative_modules/modules/home/ReactNavigation'
-import TopTab from './reactnative_modules/modules/home/TopTabNavigator'
-import FlatListUse from './reactnative_modules/modules/home/FlatListUse'
-import Mine from './reactnative_modules/modules/mine/Mine'
+const HomeStack = createStackNavigator();
 
-type Props = {};
-
-export default class App extends Component<Props> {
-  render() {
-    return <AppContainer />;
-  }
+function HomeStackScreen() {
+  return (
+    <HomeStack.Navigator
+      screenOptions={{
+        headerBackTitle: '返回',
+        headerBackTitleStyle: {
+          color: '#FF812F',
+        },
+        headerStyle: {
+          backgroundColor: '#fff',
+        },
+        headerTintColor: '#FF812F',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+      }}>
+      <HomeStack.Screen name="首页" component={Home} />
+      <HomeStack.Screen name="Flexbox" component={Flexbox} />
+      <HomeStack.Screen name="导航配置" component={MyNav} />
+      {/*<HomeStack.Screen name="TopTab" component={TopTab} />*/}
+      <HomeStack.Screen name="FlatListUse" component={FlatListUse} />
+    </HomeStack.Navigator>
+  );
 }
 
-const NavHome = createStackNavigator(
-    {
-      Home: {
-        screen: Home,    // 默认启动页后会进入第一个路由视图中
-      },
-      Flexbox: {
-        screen:Flexbox,
-      },
-      ReactNavi: {
-        screen:ReactNavi,
-      },
-      TopTab: {
-        screen:TopTab,
-      },
-      FlatListUse:{
-        screen:FlatListUse
-      },
-    },
-    {
-      /* 指定初始化路由*/
-      initialRouteName: 'Home',
-      /* 统一配置所有页面的头部 */
-      defaultNavigationOptions: {
-        headerBackTitle:'返回',
-        headerBackTitleStyle:{
-          color:'#FF812F',
+const MineStack = createStackNavigator();
+
+function MineStackScreen() {
+  return (
+    <MineStack.Navigator
+      screenOptions={{
+        headerBackTitle: '返回',
+        headerBackTitleStyle: {
+          color: '#FF812F',
         },
         headerStyle: {
-          backgroundColor: '#ffffff',
-          borderBottomWidth:1,
-          borderBottomColor:'#e1e1e1'
+          backgroundColor: '#fff',
         },
         headerTintColor: '#FF812F',
         headerTitleStyle: {
           fontWeight: 'bold',
-          color:'#2a2a2a'
         },
-      },
-    }
-);
-const NavMine = createStackNavigator(
-    {
-      Mine: {
-        screen: Mine,    // 默认启动页后会进入第一个路由视图中
-      },
-    },
-    {
-      /* 指定初始化路由*/
-      initialRouteName: 'Mine',
-      /* 统一配置所有页面的头部 */
-      defaultNavigationOptions: {
-        headerBackTitle:'返回',
-        headerBackTitleStyle:{
-          color:'#FF812F',
-        },
-        headerStyle: {
-          backgroundColor: '#ffffff',
-          borderBottomWidth:1,
-          borderBottomColor:'#e1e1e1'
-        },
-        headerTintColor: '#FF812F',
-        headerTitleStyle: {
-          fontWeight: 'bold',
-          color:'#2a2a2a'
-        },
-      },
-    }
-);
-const MyTab = createBottomTabNavigator({
-  HomeTab: {
-    screen: NavHome,
-  },
-  MineTab: {
-    screen: NavMine,
-  },
-},{
-  defaultNavigationOptions: ({ navigation }) => ({
-    tabBarLabel:navigation.state.routeName=='HomeTab'?'常用功能':'我',
-    tabBarIcon: ({ focused, tintColor }) => {
-      const { routeName } = navigation.state;
-      if (routeName === 'HomeTab') {
-        if (focused) {
-          return <Image source = {require('./reactnative_modules/res/tabbar/home_icon_pressed.png')} />;
-        } else {
-          return <Image source = {require('./reactnative_modules/res/tabbar/home_icon_default.png')} />;
-        }
-      } else if (routeName === 'MineTab') {
-        if (focused) {
-          return <Image source = {require('./reactnative_modules/res/tabbar/my_icon_pressed.png')} />;
-        } else {
-          return <Image source = {require('./reactnative_modules/res/tabbar/my_icon_default.png')} />;
-        }
-      }
-    },
-    //tabbar点击事件
-    tabBarOnPress: ({ navigation, defaultHandler }) => {
-      const navigationInRoute = navigation.getChildNavigation(navigation.state.routes[0].key);
-      // navigationInRoute.isFocused()
-      if (!!navigationInRoute && !!navigationInRoute.state.params && !!navigationInRoute.state.params.tabBarClick) {
-        navigationInRoute.state.params.tabBarClick();
-      }
-      defaultHandler();
-    },
-  }),
-  tabBarOptions: {
-    style:{
-      borderTopColor:'#e1e1e1',
+      }}>
+      <MineStack.Screen name="我的" component={Mine} />
+    </MineStack.Navigator>
+  );
+}
 
-    },
-    activeTintColor:"#FF812F",
-    inactiveTintColor:'#999999'
-    // 去掉黑线
-    // style:{borderTopWidth: 0,},
-    // activeTintColor : '#e91e63',
-    // inactiveTintColor: '#c0c0c0',
-  },
+const MyTab = createBottomTabNavigator();
 
-  initialRouteName: 'HomeTab',
-  // 后退按钮是否会导致标签切换到初始tab
-  backBehavior: 'none',
-})
-//跳转隐藏tabbar
-NavHome.navigationOptions = ({ navigation }) => {
-  let tabBarVisible = true;
-  if (navigation.state.index > 0) {
-    tabBarVisible = false;
-  }
-  return {
-    tabBarVisible,
-  };
-};
-NavMine.navigationOptions = ({ navigation }) => {
-  let tabBarVisible = true;
-  if (navigation.state.index > 0) {
-    tabBarVisible = false;
-  }
-  return {
-    tabBarVisible,
-  };
-};
+function App() {
+  return (
+    <NavigationContainer>
+      <MyTab.Navigator
+        screenOptions={({route}) => ({
+          tabBarIcon: ({focused, color, size}) => {
+            let iconName;
+            if (route.name === 'Home') {
+              if (focused) {
+                return (
+                  <Image
+                    source={require('./reactnative_modules/res/tabbar/home_icon_pressed.png')}
+                  />
+                );
+              } else {
+                return (
+                  <Image
+                    source={require('./reactnative_modules/res/tabbar/home_icon_default.png')}
+                  />
+                );
+              }
+            } else if (route.name === '我的') {
+              if (focused) {
+                return (
+                  <Image
+                    source={require('./reactnative_modules/res/tabbar/my_icon_pressed.png')}
+                  />
+                );
+              } else {
+                return (
+                  <Image
+                    source={require('./reactnative_modules/res/tabbar/my_icon_default.png')}
+                  />
+                );
+              }
+            }
+          },
+        })}
+        tabBarOptions={{
+          style: {
+            borderTopColor: '#e1e1e1',
+          },
+          activeTintColor: '#FF812F',
+          inactiveTintColor: '#999999',
+          // 去掉黑线
+          // style:{borderTopWidth: 0,},
+          // activeTintColor : '#e91e63',
+          // inactiveTintColor: '#c0c0c0',
+        }}>
+        <MyTab.Screen
+          name="Home"
+          component={HomeStackScreen}
+          ////跳转隐藏tabbar
+          options={props => {
+            return {
+              tabBarVisible:
+                !props.route.state || props.route.state.index === 0,
+            };
+          }}
+        />
+        <MyTab.Screen
+          name="我的"
+          component={MineStackScreen}
+          options={props => {
+            return {
+              tabBarVisible:
+                !props.route.state || props.route.state.index === 0,
+            };
+          }}
+        />
+      </MyTab.Navigator>
+    </NavigationContainer>
+  );
+}
 
-const AppContainer = createAppContainer(MyTab);
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
+export default App;
