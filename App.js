@@ -15,7 +15,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Home from './reactnative_modules/modules/home/Home';
 import Flexbox from './reactnative_modules/modules/home/Flexbox';
 import MyNav from './reactnative_modules/modules/home/ReactNavigation';
-// import TopTab from './reactnative_modules/modules/home/TopTabNavigator';
+import TopTab from './reactnative_modules/modules/home/TopTabNavigator';
 import FlatListUse from './reactnative_modules/modules/home/FlatListUse';
 import Mine from './reactnative_modules/modules/mine/Mine';
 
@@ -40,7 +40,7 @@ function HomeStackScreen() {
       <HomeStack.Screen name="首页" component={Home} />
       <HomeStack.Screen name="Flexbox" component={Flexbox} />
       <HomeStack.Screen name="导航配置" component={MyNav} />
-      {/*<HomeStack.Screen name="TopTab" component={TopTab} />*/}
+      <HomeStack.Screen name="TopTab" component={TopTab} />
       <HomeStack.Screen name="FlatListUse" component={FlatListUse} />
     </HomeStack.Navigator>
   );
